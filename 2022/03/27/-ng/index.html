@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo的入门教程, 海口佳兴发">
+    <meta name="keywords" content="知识库, 海口佳兴发">
     <meta name="description" content="博客之家">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo的入门教程 | 闪烁之狐</title>
+    <title>知识库 | 闪烁之狐</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo的入门教程</h1>
+                    <h1 class="description center-align post-title">知识库</h1>
                 </div>
             </div>
         </div>
@@ -421,7 +421,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-03-27
                 </div>
                 
 
@@ -442,19 +442,115 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>欢迎来到hexo！这是你的第一篇文章。有关详细信息，请查看文档。如果您在使用Hexo时遇到任何问题，可以在故障排除中找到答案，也可以在GitHub上问我</p>
-<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><pre><code>$ hexo new &quot;My new blog&quot;
+                <p>这库，比较杂乱，内容会根据不同时期，不同情况进行修改，主要是为当下某件事情进行记录和处理，带个人主观，请谅解。</p>
+<h3 id="劳动派遣公司"><a href="#劳动派遣公司" class="headerlink" title="劳动派遣公司"></a>劳动派遣公司</h3><pre><code>于在Windows环境下不能如Linux环境般直接调用无线网卡，所以需要使用其他工具将无线网卡载入，以便攻击工具能够正常使用。在无线攻击套装Aircrack-ng的Windows版本下内置了这样的工具，就是airserv-ng。
+
+步骤1：打开CMD，通过cd命令进入到aircrack-ng for Windows版本所在目录，输入airserv-ng，可以看到如图5-29所示的内容。
+
+Aircrack-ng for Windows 教程
+
+图5-29 在CMD下运行airserv-ng
+
+参数解释：
+
+* -p，指定监听的端口，即提供连接服务的端口，默认为666；
+
+* -d，载入无线网卡设备，需要驱动支持；
+
+* -c，指定启动工作频道，一般设置为预攻击AP的工作频道，默认为1；
+
+* -v，调试级别设定。
+
+作为Windows下的破解，第一步就是使用airserv-ng来载入我们当前使用的无线网卡，为后续破解做准备，命令如下（注意：在命令中出现的引号一律使用英文下的引号输入）：
+
+airserv-ng -d &quot;commview.dll|debug&quot;
+
+或者
+airserv-ng : wi_open():No error
+
+airserv-ng -d &quot;commview.dll| &#123;my adapter id&#125;&quot;
+
+输入完成后airserv-ng会自动搜寻现有无线网卡，会有提示，选择正确的无线网卡直接输入y，此时airserv-ng就在正常载入驱动后，同时开始监听本地的666端口。换句话说，airserv-ng提供的是该无线网卡的网络服务，其他计算机上的用户也可以连接到这个端口来使用这块网卡，如图5-30所示。
+
+Aircrack-ng for Windows 教程
+
+图5-30 airserv-ng工作中
+
+步骤2：现在可以使用airodump-ng来搜索当前无线环境了。注意，要另开启一个CMD，再输入如下命令：
+
+airodump-ng 127.0.0.1：666
+这里在IP地址处输入为本机即127.0.0.1，端口采用的是默认的666。
+
+Aircrack-ng for Windows 教程
+
+图5-31 在CMD下运行airodump-ng
+
+如图5-31所示，当确定预攻击目标AP的频道后，使用组合键Ctrl + C中断，即可使用如下参数来精确定位目标：
+
+airodump-ng --channel number -w filename 127.0.0.1:666
+
+这里输入“airodump-ng --channel 7 -w onewpa 127.0.0.1:666”，回车后可看到如图5-32所示的内容
+
+Aircrack-ng for Windows 教程
+
+图5-32 在CMD下运行airodump-ng进行抓包
+
+步骤3：现在，就可以和前面在BackTrack 2中讲述的一样进行Deauth攻击了，另开启一个CMD，输入（如图5-33所示）：
+
+aireplay-ng -0 1 -a AP’s MAC 127.0.0.1:666
+
+参数解释参考前面对应章节。
+
+Aircrack-ng for Windows 教程
+
+图5-33 进行Deauth攻击
+
+在个别情况下，可能会在上面命令结束时出现wi_write&lt;&gt;:Operation now progress这样的提示，这个提示在很多无线网卡下都会出现，意思是当前进程调用被占用时，Deauth攻击在大多数情况下并不会受此影响。
+
+步骤4：再开启一个CMD，输入命令查看是否捕获到WPA握手数据包。命令如下：
+
+aircrack-ng 捕获的数据包名
+如果没有捕获到WPA握手数据包，就会有如图5-34所显示的“0 handshake”，这个时候切回到刚才aireplay-ng所在的CMD中重复进行Deauth攻击。
+
+Aircrack-ng for Windows 教程
+
+图5-34 没有获取到WPA握手数据包
+
+攻击过程中注意观察airodump-ng工作界面，当右上角出现如图5-35所示的提示时，就表示成功截获到WPA握手数据包了。
+
+Aircrack-ng for Windows 教程
+
+图5-35 成功获取到WPA握手数据包
+
+此时再次使用aircrack-ng 打开捕获的数据包，就可以看到截获到WPA &lt;1 handshake&gt;的显示了，如图5-36所示，接下来便可以进行WPA本地破解了。
+
+Aircrack-ng for Windows 教程
+
+图5-36 载入破解时成功识别出获得的WPA握手数据包
+
+破解WPA-PSK输入命令如下：
+
+aircrack-ng -w password.txt onewpa*.cap
+
+这里介绍一个小技巧，可以在输入数据包名后面加一个*号，来自动将捕获的该名称的所有数据包整合导入。回车后，显示如图5-37所示。
+图5-37 在CMD下破解WPA-PSK加密
+
+如同在Linux下破解WPA一般耐心地等待，就可以看到WPA密钥成功解出了，如图5-38所示。
+
+Aircrack-ng for Windows 教程
+
+图5-38 成功破解出WPA-PSK密码
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><pre><code>$ hexo server
+<h3 id="工具和文件"><a href="#工具和文件" class="headerlink" title="工具和文件"></a>工具和文件</h3><pre><code>开源的歌源下载软件Lyricease
+turtle库是python画图库
+半小时计算机，建议看一下
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><pre><code>$ hexo generate
+<h3 id="72个小时法则"><a href="#72个小时法则" class="headerlink" title="72个小时法则"></a>72个小时法则</h3><pre><code>
+警告过的事情居然不听，在换衣服的瞬间会忘记在衣服上的小东西，
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="部署远程站点"><a href="#部署远程站点" class="headerlink" title="部署远程站点"></a>部署远程站点</h3><pre><code>$ hexo deploy
+<h3 id="市场宣传"><a href="#市场宣传" class="headerlink" title="市场宣传"></a>市场宣传</h3><pre><code>
+择优去劣，需求and购买力才是营销，光有需求是没有用的，目标用户群体一定是需求和购买力的用户群，
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
                 
             </div>
@@ -481,7 +577,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mofengr.github.io/Mofengr.github.io-/2022/01/20/hello-world/">https://mofengr.github.io/Mofengr.github.io-/2022/01/20/hello-world/</a>
+                    <a href="https://mofengr.github.io/Mofengr.github.io-/2022/03/27/-ng/">https://mofengr.github.io/Mofengr.github.io-/2022/03/27/-ng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -686,54 +782,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/25/%E6%9C%89%E6%84%9F/">
+                <a href="/2022/03/27/-ng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="心灵之境">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="知识库">
                         
-                        <span class="card-title">心灵之境</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            MoFengr
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/01/20/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="hexo的入门教程">
-                        
-                        <span class="card-title">hexo的入门教程</span>
+                        <span class="card-title">知识库</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -744,7 +804,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-27
                             </span>
                         <span class="publish-author">
                             
@@ -755,6 +815,43 @@
                     </div>
                 </div>
 
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/26/linux%E7%AC%94%E8%AE%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="linux笔记">
+                        
+                        <span class="card-title">linux笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            MoFengr
+                            
+                        </span>
+                    </div>
+                </div>
                 
             </div>
         </div>

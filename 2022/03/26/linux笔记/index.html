@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="hexo的入门教程, 海口佳兴发">
+    <meta name="keywords" content="linux笔记, 海口佳兴发">
     <meta name="description" content="博客之家">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo的入门教程 | 闪烁之狐</title>
+    <title>linux笔记 | 闪烁之狐</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo的入门教程</h1>
+                    <h1 class="description center-align post-title">linux笔记</h1>
                 </div>
             </div>
         </div>
@@ -421,7 +421,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-20
+                    2022-03-26
                 </div>
                 
 
@@ -442,19 +442,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>欢迎来到hexo！这是你的第一篇文章。有关详细信息，请查看文档。如果您在使用Hexo时遇到任何问题，可以在故障排除中找到答案，也可以在GitHub上问我</p>
-<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><pre><code>$ hexo new &quot;My new blog&quot;
+                <p>linux笔记</p>
+<h3 id="文件-目录管理"><a href="#文件-目录管理" class="headerlink" title="文件 / 目录管理"></a>文件 / 目录管理</h3><h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p>列出目录内容命令为 ls，可以理解为 list 的缩写。有以下三种常用方法，结果所列出的文件会显示成不同的颜色，不同颜色对应于不同的文件类型。<br>使用命令查看目录下内容时，会显示如下信息，每条记录包含 7 个列，从左到右依次为权限信息、文件数（文件硬链接数）、归属用户、归属群组、<br>文件大小、创建时间、文件名称。其中，权限信息共由十位组成，第一位的字符表示了文件类型，有以下几种剩余九位从左到右分成三组，分别代表所有者、<br>所属组、其他人对该文件的权限。每一组的格式为 rwx，分别对应于 read（读权限）、write（写权限）、execute（可执行，对于目录文件则为代表进入），某一位为 - 时，则代表不具有相应的权限。<br>每组权限可用数字表示，例如 rwx 对应于二进制 111，转换为 10 进制为 7，r-x 对应于二进制 101，转换为 10 进制为 5。一般来说，文件的权限通常是 rwxr-xr-x ，即 755。</p>
+<pre><code>ls -l /tmp    #列出/tmp目录下的内容，等同于ll
+ls -a /tmp    #列出/tmp目录下的内容，包括隐藏文件
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><pre><code>$ hexo server
+<h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><p>显示当前工作目录的命令为 pwd，可以理解为 print work directory。</p>
+<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>切换工作目录为 cd，可以理解为 change directory 的缩写。</p>
+<h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4><p>创建目录命令 mkdir，make directory。</p>
+<pre><code>mkdir ./test                #在当前目录下创建test目录
+mkdir /test                 #创建test目录
+mkdir -p /test/test/test    #递归创建目录/test/test/test
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><pre><code>$ hexo generate
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>创建空文件命令 touch，也可以用于更新文件的访问时间和修改时间。</p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除文件命令 rm，可以记为 remove 的简写。必须具有对所删除文件相应权限的用户才能执行该操作，<br>比如 root 用户和文件拥有者。</p>
+<pre><code>rm test.txt               #删除当前目录下test.txt文件
+rm -f test.txt            #-f参数表示强制删除
+rm -r /test/test/test/    #递归删除指定目录和所有子目录的内容
+rm -rf *                  #删除当前目录下所有内容，慎用
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="部署远程站点"><a href="#部署远程站点" class="headerlink" title="部署远程站点"></a>部署远程站点</h3><pre><code>$ hexo deploy
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>复制文件命令 cp，可记为 copy 的简写</p>
+<h4 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h4><p>移动文件命令 mv，可记为 move 的简写，用法与 cp 命令相同，效果相当于执行完 cp 命令后，再执行一次 rm 命令</p>
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p>文件查看和连接命令 cat，用于查看文本文件的内容，通常和 more、less、head、tail 以及管道命令 | 结合使用。cat 的常用参数有 -b（对非空行输出编号）、<br>-n（对所有输出行编号）、-E（在每行结束处显示 $）、-s（不输出多行空行）、-A（显示特殊字符）</p>
+<h4 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h4><p>文本编辑命令 vi，打开文件后，光标默认置于第一行，将光标移至待编辑处，按下键盘 S 或者 Insert 可开始编辑。</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>grep 命令，全称为 Global Regular Expression Print，搜索并显示特定字符串，一般用于过滤显示结果，避免显示太多不必要的信息。</p>
+<h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h4><p>awk 命令对每一行进行分割处理，可以指定间隔符，指定输出列。</p>
+<h4 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h4><p>scp 命令用于两台主机之间的文件传输，与 cp 操作类似，不同在于 scp 需要指定主机名（IP）、端口等参数。</p>
+<pre><code>scp local_file remote_username@remote_ip:remote_folder  
+scp local_file remote_username@remote_ip:remote_file
+scp local_file remote_ip:remote_folder
+scp local_file remote_ip:remote_file
 </code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h4 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h4><p>curl 和 wget 通常用于 HTTP/HTTPS/FTP 下载，并可以使用代理。</p>
+<h3 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h3><h4 id="date"><a href="#date" class="headerlink" title="date"></a>date</h4><p>date 输出操作系统的当前日期、时间和时区，-s 参数用于修改当前日期和时间。</p>
+<h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p>kill 用于终止指定 PID 的进程，killall 用于终止指定进程名字的进程，pkill 与 kill 的使用方法类似。</p>
+<h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>ps 命令显示进程，默认显示 4 列信息：PID —— 运行着的命令（CMD）的进程编号，TTY —— 命令所运行的位置（终端），<br>TIME —— 运行着的该命令所占用的 CPU 处理时间，CMD —— 该进程所运行的命令。</p>
+<h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>top 命令查看负载情况，能够实时显示系统中各个进程的资源占用状况。</p>
+<p>1.vim  文件名  进入编写模式；</p>
+<p>2.编辑结束，按ESC 键 跳到一般模式模式；</p>
+<p>3.按：两个大写的zz 进入指令列命令模式 </p>
+<p>4.cd .. 返回上一级目录</p>
 <script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">
                 
             </div>
@@ -481,7 +508,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://mofengr.github.io/Mofengr.github.io-/2022/01/20/hello-world/">https://mofengr.github.io/Mofengr.github.io-/2022/01/20/hello-world/</a>
+                    <a href="https://mofengr.github.io/Mofengr.github.io-/2022/03/26/linux%E7%AC%94%E8%AE%B0/">https://mofengr.github.io/Mofengr.github.io-/2022/03/26/linux%E7%AC%94%E8%AE%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -690,13 +717,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/25/%E6%9C%89%E6%84%9F/">
+                <a href="/2022/03/27/-ng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="心灵之境">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="知识库">
                         
-                        <span class="card-title">心灵之境</span>
+                        <span class="card-title">知识库</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -707,7 +734,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-25
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-27
                         </span>
                         <span class="publish-author">
                             
@@ -724,16 +751,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/20/hello-world/">
+                <a href="/2022/03/26/%E7%BD%91%E5%AE%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="hexo的入门教程">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
                         
-                        <span class="card-title">hexo的入门教程</span>
+                        <span class="card-title"></span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -744,7 +771,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-26
                             </span>
                         <span class="publish-author">
                             
@@ -754,7 +781,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>

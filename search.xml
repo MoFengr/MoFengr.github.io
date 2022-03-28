@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>知识库</title>
+      <link href="/2022/03/27/-ng/"/>
+      <url>/2022/03/27/-ng/</url>
+      
+        <content type="html"><![CDATA[<p>这库，比较杂乱，内容会根据不同时期，不同情况进行修改，主要是为当下某件事情进行记录和处理，带个人主观，请谅解。</p><h3 id="劳动派遣公司"><a href="#劳动派遣公司" class="headerlink" title="劳动派遣公司"></a>劳动派遣公司</h3><pre><code>于在Windows环境下不能如Linux环境般直接调用无线网卡，所以需要使用其他工具将无线网卡载入，以便攻击工具能够正常使用。在无线攻击套装Aircrack-ng的Windows版本下内置了这样的工具，就是airserv-ng。步骤1：打开CMD，通过cd命令进入到aircrack-ng for Windows版本所在目录，输入airserv-ng，可以看到如图5-29所示的内容。Aircrack-ng for Windows 教程图5-29 在CMD下运行airserv-ng参数解释：* -p，指定监听的端口，即提供连接服务的端口，默认为666；* -d，载入无线网卡设备，需要驱动支持；* -c，指定启动工作频道，一般设置为预攻击AP的工作频道，默认为1；* -v，调试级别设定。作为Windows下的破解，第一步就是使用airserv-ng来载入我们当前使用的无线网卡，为后续破解做准备，命令如下（注意：在命令中出现的引号一律使用英文下的引号输入）：airserv-ng -d &quot;commview.dll|debug&quot;或者airserv-ng : wi_open():No errorairserv-ng -d &quot;commview.dll| &#123;my adapter id&#125;&quot;输入完成后airserv-ng会自动搜寻现有无线网卡，会有提示，选择正确的无线网卡直接输入y，此时airserv-ng就在正常载入驱动后，同时开始监听本地的666端口。换句话说，airserv-ng提供的是该无线网卡的网络服务，其他计算机上的用户也可以连接到这个端口来使用这块网卡，如图5-30所示。Aircrack-ng for Windows 教程图5-30 airserv-ng工作中步骤2：现在可以使用airodump-ng来搜索当前无线环境了。注意，要另开启一个CMD，再输入如下命令：airodump-ng 127.0.0.1：666这里在IP地址处输入为本机即127.0.0.1，端口采用的是默认的666。Aircrack-ng for Windows 教程图5-31 在CMD下运行airodump-ng如图5-31所示，当确定预攻击目标AP的频道后，使用组合键Ctrl + C中断，即可使用如下参数来精确定位目标：airodump-ng --channel number -w filename 127.0.0.1:666这里输入“airodump-ng --channel 7 -w onewpa 127.0.0.1:666”，回车后可看到如图5-32所示的内容Aircrack-ng for Windows 教程图5-32 在CMD下运行airodump-ng进行抓包步骤3：现在，就可以和前面在BackTrack 2中讲述的一样进行Deauth攻击了，另开启一个CMD，输入（如图5-33所示）：aireplay-ng -0 1 -a AP’s MAC 127.0.0.1:666参数解释参考前面对应章节。Aircrack-ng for Windows 教程图5-33 进行Deauth攻击在个别情况下，可能会在上面命令结束时出现wi_write&lt;&gt;:Operation now progress这样的提示，这个提示在很多无线网卡下都会出现，意思是当前进程调用被占用时，Deauth攻击在大多数情况下并不会受此影响。步骤4：再开启一个CMD，输入命令查看是否捕获到WPA握手数据包。命令如下：aircrack-ng 捕获的数据包名如果没有捕获到WPA握手数据包，就会有如图5-34所显示的“0 handshake”，这个时候切回到刚才aireplay-ng所在的CMD中重复进行Deauth攻击。Aircrack-ng for Windows 教程图5-34 没有获取到WPA握手数据包攻击过程中注意观察airodump-ng工作界面，当右上角出现如图5-35所示的提示时，就表示成功截获到WPA握手数据包了。Aircrack-ng for Windows 教程图5-35 成功获取到WPA握手数据包此时再次使用aircrack-ng 打开捕获的数据包，就可以看到截获到WPA &lt;1 handshake&gt;的显示了，如图5-36所示，接下来便可以进行WPA本地破解了。Aircrack-ng for Windows 教程图5-36 载入破解时成功识别出获得的WPA握手数据包破解WPA-PSK输入命令如下：aircrack-ng -w password.txt onewpa*.cap这里介绍一个小技巧，可以在输入数据包名后面加一个*号，来自动将捕获的该名称的所有数据包整合导入。回车后，显示如图5-37所示。图5-37 在CMD下破解WPA-PSK加密如同在Linux下破解WPA一般耐心地等待，就可以看到WPA密钥成功解出了，如图5-38所示。Aircrack-ng for Windows 教程图5-38 成功破解出WPA-PSK密码</code></pre><h3 id="工具和文件"><a href="#工具和文件" class="headerlink" title="工具和文件"></a>工具和文件</h3><pre><code>开源的歌源下载软件Lyriceaseturtle库是python画图库半小时计算机，建议看一下</code></pre><h3 id="72个小时法则"><a href="#72个小时法则" class="headerlink" title="72个小时法则"></a>72个小时法则</h3><pre><code>警告过的事情居然不听，在换衣服的瞬间会忘记在衣服上的小东西，</code></pre><h3 id="市场宣传"><a href="#市场宣传" class="headerlink" title="市场宣传"></a>市场宣传</h3><pre><code>择优去劣，需求and购买力才是营销，光有需求是没有用的，目标用户群体一定是需求和购买力的用户群，</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux笔记</title>
+      <link href="/2022/03/26/linux%E7%AC%94%E8%AE%B0/"/>
+      <url>/2022/03/26/linux%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<p>linux笔记</p><h3 id="文件-目录管理"><a href="#文件-目录管理" class="headerlink" title="文件 / 目录管理"></a>文件 / 目录管理</h3><h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h4><p>列出目录内容命令为 ls，可以理解为 list 的缩写。有以下三种常用方法，结果所列出的文件会显示成不同的颜色，不同颜色对应于不同的文件类型。<br>使用命令查看目录下内容时，会显示如下信息，每条记录包含 7 个列，从左到右依次为权限信息、文件数（文件硬链接数）、归属用户、归属群组、<br>文件大小、创建时间、文件名称。其中，权限信息共由十位组成，第一位的字符表示了文件类型，有以下几种剩余九位从左到右分成三组，分别代表所有者、<br>所属组、其他人对该文件的权限。每一组的格式为 rwx，分别对应于 read（读权限）、write（写权限）、execute（可执行，对于目录文件则为代表进入），某一位为 - 时，则代表不具有相应的权限。<br>每组权限可用数字表示，例如 rwx 对应于二进制 111，转换为 10 进制为 7，r-x 对应于二进制 101，转换为 10 进制为 5。一般来说，文件的权限通常是 rwxr-xr-x ，即 755。</p><pre><code>ls -l /tmp    #列出/tmp目录下的内容，等同于llls -a /tmp    #列出/tmp目录下的内容，包括隐藏文件</code></pre><h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h4><p>显示当前工作目录的命令为 pwd，可以理解为 print work directory。</p><h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h4><p>切换工作目录为 cd，可以理解为 change directory 的缩写。</p><h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h4><p>创建目录命令 mkdir，make directory。</p><pre><code>mkdir ./test                #在当前目录下创建test目录mkdir /test                 #创建test目录mkdir -p /test/test/test    #递归创建目录/test/test/test</code></pre><h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h4><p>创建空文件命令 touch，也可以用于更新文件的访问时间和修改时间。</p><h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h4><p>删除文件命令 rm，可以记为 remove 的简写。必须具有对所删除文件相应权限的用户才能执行该操作，<br>比如 root 用户和文件拥有者。</p><pre><code>rm test.txt               #删除当前目录下test.txt文件rm -f test.txt            #-f参数表示强制删除rm -r /test/test/test/    #递归删除指定目录和所有子目录的内容rm -rf *                  #删除当前目录下所有内容，慎用</code></pre><h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h4><p>复制文件命令 cp，可记为 copy 的简写</p><h4 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h4><p>移动文件命令 mv，可记为 move 的简写，用法与 cp 命令相同，效果相当于执行完 cp 命令后，再执行一次 rm 命令</p><h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h4><p>文件查看和连接命令 cat，用于查看文本文件的内容，通常和 more、less、head、tail 以及管道命令 | 结合使用。cat 的常用参数有 -b（对非空行输出编号）、<br>-n（对所有输出行编号）、-E（在每行结束处显示 $）、-s（不输出多行空行）、-A（显示特殊字符）</p><h4 id="vi"><a href="#vi" class="headerlink" title="vi"></a>vi</h4><p>文本编辑命令 vi，打开文件后，光标默认置于第一行，将光标移至待编辑处，按下键盘 S 或者 Insert 可开始编辑。</p><h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>grep 命令，全称为 Global Regular Expression Print，搜索并显示特定字符串，一般用于过滤显示结果，避免显示太多不必要的信息。</p><h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h4><p>awk 命令对每一行进行分割处理，可以指定间隔符，指定输出列。</p><h4 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h4><p>scp 命令用于两台主机之间的文件传输，与 cp 操作类似，不同在于 scp 需要指定主机名（IP）、端口等参数。</p><pre><code>scp local_file remote_username@remote_ip:remote_folder  scp local_file remote_username@remote_ip:remote_filescp local_file remote_ip:remote_folderscp local_file remote_ip:remote_file</code></pre><h4 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h4><p>curl 和 wget 通常用于 HTTP/HTTPS/FTP 下载，并可以使用代理。</p><h3 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h3><h4 id="date"><a href="#date" class="headerlink" title="date"></a>date</h4><p>date 输出操作系统的当前日期、时间和时区，-s 参数用于修改当前日期和时间。</p><h4 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h4><p>kill 用于终止指定 PID 的进程，killall 用于终止指定进程名字的进程，pkill 与 kill 的使用方法类似。</p><h4 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h4><p>ps 命令显示进程，默认显示 4 列信息：PID —— 运行着的命令（CMD）的进程编号，TTY —— 命令所运行的位置（终端），<br>TIME —— 运行着的该命令所占用的 CPU 处理时间，CMD —— 该进程所运行的命令。</p><h4 id="top"><a href="#top" class="headerlink" title="top"></a>top</h4><p>top 命令查看负载情况，能够实时显示系统中各个进程的资源占用状况。</p><p>1.vim  文件名  进入编写模式；</p><p>2.编辑结束，按ESC 键 跳到一般模式模式；</p><p>3.按：两个大写的zz 进入指令列命令模式 </p><p>4.cd .. 返回上一级目录</p><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2022/03/26/%E7%BD%91%E5%AE%89/"/>
+      <url>/2022/03/26/%E7%BD%91%E5%AE%89/</url>
+      
+        <content type="html"><![CDATA[<blockquote class="pullquote mindmap mindmap-md"><ul><li>调查<ul><li>网站<ul><li>网站审核</li><li>namp爆破端口</li><li>随便输入一串id进行抓包调查包的发送地址</li><li>sql注入</li><li>在输入框内插入xxs脚本，xxs如何获取ip</li></ul></li><li>邮箱            -</li><li>qq<ul><li>网上公开库</li><li>加入qq群寻找相关qq</li></ul></li><li>支付宝<ul><li>0.01查找用户名</li></ul></li><li>撞库<ul><li>无</li></ul></li><li>api接口调用<ul><li>进行身份验证</li></ul></li></ul></li></ul></blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2022/03/26/%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/03/26/%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<blockquote class="pullquote mindmap mindmap-md"><ul><li>开发能力<ul><li>电路设计<ul><li>模拟电路设计<ul><li>三级管和Mos开关</li><li>基本运用电路</li></ul></li><li>数字电路设计<ul><li>12c</li><li>spi</li><li>uart</li><li>以太网</li><li>mipi</li><li>ddr存储器</li></ul></li><li>电源设计<ul><li>dc-dc</li><li>ldo</li></ul></li></ul></li><li>pcb设计能力<ul><li>立创eda</li><li>altium</li><li><h2 id="cadence"><a href="#cadence" class="headerlink" title="cadence"></a>cadence</h2></li></ul></li><li>mcu开发能力<ul><li>单片机</li><li>dsp</li><li>arm</li><li>fpga</li></ul></li><li>机械设计能力<ul><li>fusio 360</li></ul></li><li>其他<ul><li>学习</li></ul></li></ul></li></ul></blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>知识库</title>
+      <link href="/2022/03/25/%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
+      <url>/2022/03/25/%E7%9F%A5%E8%AF%86%E5%BA%93/</url>
+      
+        <content type="html"><![CDATA[<p>这库，比较杂乱，内容会根据不同时期，不同情况进行修改，主要是为当下某件事情进行记录和处理，带个人主观，请谅解。</p><h3 id="劳动派遣公司"><a href="#劳动派遣公司" class="headerlink" title="劳动派遣公司"></a>劳动派遣公司</h3><pre><code>微创软件  腾云悦智  腾信软创 博彦科技 浪潮 中软国际 软通动力 文思海辉</code></pre><h3 id="工具和文件"><a href="#工具和文件" class="headerlink" title="工具和文件"></a>工具和文件</h3><pre><code>开源的歌源下载软件Lyriceaseturtle库是python画图库半小时计算机，建议看一下</code></pre><h3 id="72个小时法则"><a href="#72个小时法则" class="headerlink" title="72个小时法则"></a>72个小时法则</h3><pre><code>警告过的事情居然不听，在换衣服的瞬间会忘记在衣服上的小东西，</code></pre><h3 id="市场宣传"><a href="#市场宣传" class="headerlink" title="市场宣传"></a>市场宣传</h3><pre><code>择优去劣，需求and购买力才是营销，光有需求是没有用的，目标用户群体一定是需求和购买力的用户群，</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>银行分析</title>
+      <link href="/2022/03/25/%E9%93%B6%E8%A1%8C%E7%BB%93%E6%9E%84/"/>
+      <url>/2022/03/25/%E9%93%B6%E8%A1%8C%E7%BB%93%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<blockquote class="pullquote mindmap mindmap-md"><ul><li>银行<ul><li>作业中心<ul><li>合同处理中心</li></ul></li><li>保安部<ul><li>人员进出入安保</li></ul></li><li>法律合规中心<ul><li>事务规划</li></ul></li><li>客户管理部<ul><li>维护产品及销售</li></ul></li><li>零售业务部<ul><li>管理合同</li><li>统筹业务</li><li>合理规范</li></ul></li><li>财务会计部<ul><li>对内业务清算</li></ul></li><li>会计核算部<ul><li>对外业务清算</li></ul></li><li>金融市场部<ul><li>金融管理部门</li></ul></li><li>信用运营中心<ul><li>审核和规范中心</li></ul></li><li>人力资源部<ul><li>人员配备中心</li></ul></li><li>开发部<ul><li>app产品开发和维护</li></ul></li><li>科技部<ul><li>综合运用中心</li></ul></li><li>运营管理部<ul><li>合理规范各个部门正常运行</li></ul></li></ul></li></ul></blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>小米路由器设置</title>
+      <link href="/2022/03/25/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/03/25/%E8%B7%AF%E7%94%B1%E5%99%A8%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h3 id="miwifi-com"><a href="#miwifi-com" class="headerlink" title="miwifi.com"></a>miwifi.com</h3><pre><code>首先登录小米wifi，并下载相关的app，我的小米路由器是mini1，300带宽，在登上wifi后台之后就，填上相应的购买宽带的账号，设置相应的宽带密码，然后就在设置中，设置ipv6的相应设置，ipv4的时代里，ipv4相应的地址使用率过高，为了增加使用，移动网是怎么划分区域进行地址绑定，就是相当一个大内网，如果还是过高使用率，那就在划分区域，在进行绑定，就是又一个大大内网，所以网络工程师为了不在套娃就发明了ipv6，通俗讲就是wifi6，wifi6的使用特点是网速快，反应快，不断链，因此未来就是ipv6的时代。</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>编程</title>
+      <link href="/2022/03/25/%E7%BC%96%E7%A8%8B/"/>
+      <url>/2022/03/25/%E7%BC%96%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<blockquote class="pullquote mindmap mindmap-md"><ul><li>学习方向<ul><li>任何方向<ul><li>编程语言<ul><li>Java</li></ul></li><li>SQL</li><li>Linux</li><li>Git</li></ul></li><li>技术<ul><li>Java Web</li><li>数据库</li><li>Docker</li><li>svn</li><li>消息队列(MQ)</li><li>mycat</li><li>大数据<ul><li>Hadoop</li><li>HBase</li></ul></li></ul></li><li>内功<ul><li>计算机基础<ul><li>计算机网络</li><li>计算机操作系统</li><li>编译原理</li><li>计算机组成原理</li></ul></li><li>数据结构与算法</li><li>设计模式</li><li>性能优化</li><li>架构设计</li><li>软件工程</li></ul></li><li>其他<ul><li>英语</li><li>博客</li></ul></li></ul></li></ul></blockquote><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>心灵之境</title>
+      <link href="/2022/03/25/%E6%9C%89%E6%84%9F/"/>
+      <url>/2022/03/25/%E6%9C%89%E6%84%9F/</url>
+      
+        <content type="html"><![CDATA[<p>博客有感，布置这博客三天的心里感想</p><h3 id="下载各种工具"><a href="#下载各种工具" class="headerlink" title="下载各种工具"></a>下载各种工具</h3><pre><code>下载gethub，虽然玩这个也有一年的时间了，但我还是没想到布置库的时候会出错，就小小的页面问题，我光找也找了很多天。</code></pre><h3 id="布置页面"><a href="#布置页面" class="headerlink" title="布置页面"></a>布置页面</h3><pre><code>其实也不算是布置页面，主要是把页面运行起来，花时间翻译成中文，把不需要的标签和内容删除，哇，真的，我自己花时间写HTML都没有怎么累</code></pre><h3 id="有感"><a href="#有感" class="headerlink" title="有感"></a>有感</h3><pre><code>很累，但我要写博客的目的是什么，我希望我自己不要忘记，我想把我学过的东西都写在上面，仅此而已，我学过很多东西，也许大家都不看好，但我还是想把他写下来，以此记住。</code></pre><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo的入门教程</title>
+      <link href="/2022/01/20/hello-world/"/>
+      <url>/2022/01/20/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>欢迎来到hexo！这是你的第一篇文章。有关详细信息，请查看文档。如果您在使用Hexo时遇到任何问题，可以在故障排除中找到答案，也可以在GitHub上问我</p><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><pre><code>$ hexo new &quot;My new blog&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><pre><code>$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><pre><code>$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="部署远程站点"><a href="#部署远程站点" class="headerlink" title="部署远程站点"></a>部署远程站点</h3><pre><code>$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><script type="text&#x2F;javascript" src="https://unpkg.com/kity@2.0.4/dist/kity.min.js"></script><script type="text&#x2F;javascript" src="https://unpkg.com/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text&#x2F;javascript" src="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text&#x2F;css" href="https://unpkg.com/hexo-simple-mindmap@0.8.0/dist/mindmap.min.css">]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
